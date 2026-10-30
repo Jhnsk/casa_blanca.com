@@ -25,6 +25,7 @@
 body {
     background-color: var(--background-color);
     width: 100%;
+    padding-bottom: 60px;
 }
 
 ul,
@@ -97,7 +98,7 @@ a {
 
 .logo_img img {
     display: block;
-    width: 100px;
+    width: 130px;
     max-width: 100%;
     height: auto;
 }
@@ -184,7 +185,7 @@ a {
 .carousel-track {
     display: flex;
     width: 100%;
-    height: 170px;
+    height: 200px;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     scroll-behavior: smooth;
@@ -211,7 +212,7 @@ a {
     display: block;
     width: 100%;
     height: auto;
-    aspect-ratio: 16 / 10;
+    aspect-ratio: 16 / 12;
     object-fit: cover;
 }
 
@@ -252,7 +253,7 @@ a {
 
 .categories {
     width: 100%;
-    padding: 5px 10px 8px;
+    padding: 5px 10px 12px;
 }
 
 .categories_list {
@@ -315,7 +316,7 @@ a {
 .popular-products {
     width: 100%;
     padding: 12px;
-    padding-top: 4px;
+    padding-top: 6px;
 }
 
 .section-header {
@@ -458,6 +459,222 @@ a {
     color: white;
     font-size: 15px;
     cursor: pointer;
+}
+
+.secondary_promotions {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: calc(100% - 26px);
+    min-height: 125px;
+    margin: 20px auto 0;
+    padding: 12px 16px;
+    background-color: #f1dfca;
+    border-radius: 20px;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+/* Imagem de fundo */
+.promotion_image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+.promotion_image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* Conteúdo textual */
+.promotion_content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 60%;
+}
+
+.promotion_label {
+    font-size: 9px;
+    color: #8b5a32;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+.promotion_content h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 27px;
+    line-height: 1.1;
+    color: #542b18;
+    margin: 2px 0;
+}
+
+.promotion_content p {
+    font-size: 12px;
+    color: #24170f;
+    margin: 2px 0 7px;
+}
+
+.promotion_button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 12px;
+    background-color: #653016;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 30px;
+    font-size: 10px;
+    font-weight: 600;
+}
+
+.promotion_button span {
+    font-size: 14px;
+}
+
+/* Selo de desconto */
+.promotion_discount {
+    position: absolute;
+    z-index: 3;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    background-color: #582b18;
+    color: #fff;
+    font-size: 21px;
+    font-weight: 700;
+}
+
+.promotion_discount small {
+    font-size: 11px;
+    font-weight: 400;
+}
+
+.bottom_navigation {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    background-color: #fffaf6;
+    border-radius: 30px 30px 0 0;
+    box-shadow: 0 -2px 12px rgba(0, 0, 0, 0.08);
+
+    padding: 4px 10px;
+    box-sizing: border-box;
+    z-index: 1000;
+}
+
+/* Itens da navegação */
+.navigation_item {
+    position: relative;
+    display: flex;
+    flex: 1;
+    min-width: 0;
+    height: 100%;
+
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+
+    text-decoration: none;
+    color: #171717;
+    font-size: 10px;
+    font-weight: 400;
+
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Impede mudanças de cor dos links */
+.navigation_item:visited,
+.navigation_item:hover,
+.navigation_item:active,
+.navigation_item:focus {
+    color: #171717;
+    text-decoration: none;
+}
+
+/* Ícones */
+.navigation_icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 22px;
+    line-height: 1;
+    color: #171717;
+}
+
+/* Home selecionado */
+.navigation_item.active,
+.navigation_item.active:visited,
+.navigation_item.active:hover,
+.navigation_item.active:active,
+.navigation_item.active:focus {
+    color: #653016;
+}
+
+.navigation_item.active .navigation_icon {
+    color: #653016;
+}
+
+/* Botão central */
+.navigation_order {
+    transform: translateY(-12px);
+    z-index: 2;
+    color: #fff;
+    gap: 4px;
+}
+
+/* Círculo central */
+.navigation_order::before {
+    content: "";
+    position: absolute;
+
+    width: 66px;
+    height: 66px;
+
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    background-color: #653016;
+    border-radius: 50%;
+    box-shadow: 0 3px 9px rgba(75, 35, 15, 0.20);
+
+    z-index: -1;
+}
+
+/* Ícone do Order */
+.navigation_order .navigation_icon {
+    color: #fff;
+    font-size: 30px;
+}
+
+/* Texto do Order */
+.navigation_order span:last-child {
+    color: #fff;
+    font-size: 12px;
 }
 
 
