@@ -1,20 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Casa Blanca Gourmet</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&display=swap">
+
     <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" type="text/css"
-        href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css" />
-    <link rel="stylesheet" type="text/css"
-        href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/fill/style.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.2/font/bootstrap-icons.min.css">
-    <title>Document</title>
 </head>
 
 <body>
-    <header class="header">
+    <header class="header" id="inicio">
         <div class="header_first_content">
             <button class="menu-toggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu">
                 <span></span>
@@ -22,7 +24,7 @@
                 <span></span>
             </button>
 
-            <nav class="menu" id="menu" hidden>
+            <nav class="menu" id="menu" aria-label="Menu do site" hidden>
                 <ul>
                     <li><a href="#inicio">Início</a></li>
                     <li><a href="#sobre">Sobre</a></li>
@@ -32,23 +34,23 @@
             </nav>
 
             <a href="#inicio" class="logo_img">
-                <img src="assets/images/casablanca_logo.png" alt="">
+                <img src="assets/images/casablanca_logo.png" alt="Casa Blanca Gourmet">
             </a>
 
             <button class="cart-toggle" aria-label="Abrir carrinho">
                 <img src="assets/images/carticon.png" alt="">
             </button>
         </div>
+
         <div class="header_search_content">
-            <input type="search" class="search" placeholder="search café, lanches...">
-            <button class="tune">
+            <input type="search" class="search" aria-label="Buscar" placeholder="Buscar café, lanches...">
+            <button class="tune" aria-label="Filtros">
                 <img src="assets/images/tune.png" alt="">
             </button>
         </div>
     </header>
 
     <main>
-
 
         <section class="promotions" aria-label="Ofertas e promoções">
 
@@ -88,39 +90,37 @@
 
         </section>
 
-
-
-        <section class="categories" aria-labelledby="categories-title">
+        <section class="categories" aria-label="Categorias">
 
             <div class="categories_list">
-                <a href="#camisetas" class="category_item">
+                <a href="#cafe" class="category_item">
                     <i class="bi bi-cup-hot"></i>
                     <span>Café</span>
                 </a>
 
-                <a href="#calcas" class="category_item">
+                <a href="#salgados" class="category_item">
                     <i class="ph ph-pizza"></i>
                     <span>Salgados</span>
                 </a>
 
-                <a href="#tenis" class="category_item">
+                <a href="#sanduiches" class="category_item">
                     <i class="ph ph-hamburger"></i>
-                    <span>Sanduiches</span>
+                    <span>Sanduíches</span>
                 </a>
 
-                <a href="#acessorios" class="category_item">
+                <a href="#sobremesas" class="category_item">
                     <i class="bi bi-cake2"></i>
-                    <span>sobremesas</span>
+                    <span>Sobremesas</span>
                 </a>
 
-                <a href="#tenis" class="category_item">
+                <a href="#drinks" class="category_item">
                     <i class="bi bi-cup-straw"></i>
                     <span>Drinks</span>
                 </a>
 
-                <a href="#acessorios" class="category_item">
+                <a href="#refeicoes" class="category_item">
                     <i class="bi bi-egg-fried"></i>
-                    <span>Refeiçoes</span>
+                    <span>Refeições</span>
                 </a>
             </div>
         </section>
@@ -238,7 +238,7 @@
 
                 <p>On all coffee orders</p>
 
-                <a href="#coffee-products" class="promotion_button">
+                <a href="#cafe" class="promotion_button">
                     Order Now
                     <span aria-hidden="true">→</span>
                 </a>
@@ -259,7 +259,7 @@
             <span>Home</span>
         </a>
 
-        <a href="#menu" class="navigation_item">
+        <a href="#cardapio" class="navigation_item">
             <span class="navigation_icon" aria-hidden="true"><i class="bi bi-book"></i></span>
             <span>Menu</span>
         </a>
@@ -270,7 +270,7 @@
         </a>
 
         <a href="#rewards" class="navigation_item">
-            <span class="navigation_icon" aria-hidden="true">♔</span>
+            <span class="navigation_icon" aria-hidden="true"><i class="bi bi-gift"></i></span>
             <span>Rewards</span>
         </a>
 
