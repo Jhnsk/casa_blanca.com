@@ -179,3 +179,33 @@ document.addEventListener("click", (event) => {
     closeMenu();
   }
 });
+
+/* ==============================
+   ANIMAÇÃO AO ROLAR
+============================== */
+
+// Cards de produto entram em sequência
+document.querySelectorAll(".product-card").forEach((card, i) => {
+  card.style.setProperty("--delay", `${i * 0.1}s`);
+});
+
+const revealItems = document.querySelectorAll(".reveal");
+
+if ("IntersectionObserver" in window) {
+  const observer = new IntersectionObserver(
+    (entries, obs) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          obs.unobserve(entry.target); // anima só uma vez
+        }
+      });
+    },
+    { threshold: 0.15, rootMargin: "0px 0px -40px 0px" }
+  );
+
+  revealItems.forEach((el) => observer.observe(el));
+} else {
+  // navegador antigo: mostra tudo sem animar
+  revealItems.forEach((el) => el.classList.add("is-visible"));
+}
