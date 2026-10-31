@@ -53,7 +53,7 @@ a {
     align-items: center;
     width: 100%;
     padding: 0 15px;
-    margin-bottom: -15px;
+    margin-bottom: -35px;
 }
 
 /* MENU HAMBÚRGUER */
@@ -65,7 +65,7 @@ a {
     justify-content: center;
     gap: 3px;
     width: 30px;
-    height: 20px;
+    height: 30px;
     padding: 0;
     border: none;
     background: transparent;
@@ -77,7 +77,7 @@ a {
     display: block;
     flex-shrink: 0;
     width: 22px;
-    height: 2px;
+    height: 3px;
     background: #333;
     border-radius: 5px;
 }
@@ -136,7 +136,7 @@ a {
     flex: 1 1 0;
     width: 0;
     min-width: 0;
-    height: 35px;
+    height: 38px;
     padding: 0 12px 0 35px;
     border: none;
     border-radius: 50px;
@@ -159,7 +159,7 @@ a {
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-    padding: 5px;
+    padding: 7px;
     border: none;
     border-radius: 30px;
     background: white;
@@ -200,20 +200,23 @@ a {
 .carousel-item {
     flex: 0 0 100%;
     width: 100%;
+    height: 100%;
     scroll-snap-align: start;
 }
 
 .carousel-item a {
     display: block;
     width: 100%;
+    height: 100%;
 }
 
 .carousel-item img {
     display: block;
     width: 100%;
-    height: auto;
-    aspect-ratio: 16 / 12;
+    height: 100%;
+    aspect-ratio: 17 / 12;
     object-fit: cover;
+    object-position: center;
 }
 
 /* INDICADORES SOBRE A IMAGEM */
@@ -620,7 +623,7 @@ a {
     align-items: center;
     justify-content: center;
 
-    font-size: 22px;
+    font-size: 18px;
     line-height: 1;
     color: #171717;
 }
@@ -668,7 +671,7 @@ a {
 /* Ícone do Order */
 .navigation_order .navigation_icon {
     color: #fff;
-    font-size: 30px;
+    font-size: 18px;
 }
 
 /* Texto do Order */
