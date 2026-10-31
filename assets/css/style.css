@@ -260,10 +260,32 @@ a {
     border: none;
     background: transparent;
     cursor: pointer;
+    position: relative;
 }
 
 .cart-toggle img {
     width: 22px;
+}
+
+.cart-count {
+    position: absolute;
+    top: -2px;
+    right: -2px;
+
+    min-width: 16px;
+    height: 16px;
+    padding: 0 3px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #e53935;
+    color: white;
+    border-radius: 50%;
+
+    font-size: 10px;
+    font-weight: bold;
 }
 
 /* SEGUNDA LINHA DO HEADER */
@@ -310,6 +332,40 @@ a {
     border-radius: 30px;
     background: white;
     box-shadow: var(--shadows);
+}
+
+.cart-sidebar {
+    position: fixed;
+    top: 0;
+    right: 0;
+
+    width: 350px;
+    max-width: 85%;
+    height: 100vh;
+
+    background: var(--menu-down-background);
+    z-index: 1000;
+
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+}
+
+.cart-sidebar.active {
+    transform: translateX(0);
+}
+
+.cart-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+
+    border: none;
+    background: transparent;
+    font-size: 28px;
+    cursor: pointer;
 }
 
 

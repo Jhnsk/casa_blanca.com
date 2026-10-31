@@ -209,3 +209,15 @@ if ("IntersectionObserver" in window) {
   // navegador antigo: mostra tudo sem animar
   revealItems.forEach((el) => el.classList.add("is-visible"));
 }
+
+const cartToggle = document.querySelector('.cart-toggle');
+const cartSidebar = document.querySelector('.cart-sidebar');
+const cartClose = document.querySelector('.cart-close');
+
+cartToggle.addEventListener('click', () => {
+    cartSidebar.classList.add('active');
+});
+
+cartClose.addEventListener('click', () => {
+    cartSidebar.classList.remove('active');
+});
