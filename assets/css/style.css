@@ -191,6 +191,7 @@ a {
     scroll-behavior: smooth;
     scrollbar-width: none;
     -webkit-overflow-scrolling: touch;
+    touch-action: pan-x;
 }
 
 .carousel-track::-webkit-scrollbar {
