@@ -340,7 +340,7 @@ a {
     right: 0;
 
     width: 350px;
-    max-width: 85%;
+    max-width: 100%;
     height: 100vh;
 
     background: var(--menu-down-background);
