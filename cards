@@ -1,0 +1,86 @@
+ <!-- Produto 1 -->
+                <article class="product-card ">
+
+                    <div class="product-image">
+                        <img src="assets/images/cafe1.jpg" alt="Cappuccino com leite vaporizado">
+
+                        <span class="product-badge">Bestseller</span>
+                    </div>
+
+                    <div class="product-info">
+                        <h3>Cappuccino</h3>
+
+                        <p>Smooth espresso with steamed milk</p>
+
+                        <p class="product-rating">
+                            ★ 4.8 (1.2K+)
+                        </p>
+
+                        <div class="product-footer">
+                            <span class="product-price">$3.99</span>
+
+                            <button class="add-to-cart" aria-label="Adicionar Cappuccino ao carrinho">
+                                +
+                            </button>
+                        </div>
+                    </div>
+
+                </article>
+
+                <!-- Produto 2 -->
+                <article class="product-card ">
+
+                    <div class="product-image">
+                        <img src="assets/images/muffin.jpg" alt="Muffin de chocolate">
+
+                        <span class="product-badge">Chef's Pick</span>
+                    </div>
+
+                    <div class="product-info">
+                        <h3>Chocolate Muffin</h3>
+
+                        <p>Rich, moist and perfectly baked</p>
+
+                        <p class="product-rating">
+                            ★ 4.7 (968+)
+                        </p>
+
+                        <div class="product-footer">
+                            <span class="product-price">$2.99</span>
+
+                            <button class="add-to-cart" aria-label="Adicionar muffin de chocolate ao carrinho">
+                                +
+                            </button>
+                        </div>
+                    </div>
+
+                </article>
+
+                <!-- Produto 3 -->
+                <article class="product-card ">
+
+                    <div class="product-image">
+                        <img src="assets/images/sandwich.jpg" alt="Sanduíche de frango">
+
+                        <span class="product-badge">Popular</span>
+                    </div>
+
+                    <div class="product-info">
+                        <h3>Chicken Club Sandwich</h3>
+
+                        <p>Grilled chicken, veggies and our special sauce</p>
+
+                        <p class="product-rating">
+                            ★ 4.6 (743+)
+                        </p>
+
+                        <div class="product-footer">
+                            <span class="product-price">$6.49</span>
+
+                            <button class="add-to-cart" aria-label="Adicionar sanduíche de frango ao carrinho">
+                                +
+                            </button>
+                        </div>
+                    </div>
+
+                </article>

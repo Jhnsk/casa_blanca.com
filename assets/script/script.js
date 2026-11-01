@@ -1,6 +1,7 @@
 const carousel = document.querySelector(".carousel-track");
 const items = document.querySelectorAll(".carousel-item");
 const indicators = document.querySelector(".carousel-indicators");
+const productsList = document.querySelector(".products-list");
 
 const reduceMotion = window.matchMedia(
   "(prefers-reduced-motion: reduce)"
@@ -97,10 +98,20 @@ if (!reduceMotion) {
 const categories = document.querySelectorAll(".category_item");
 
 categories.forEach((category) => {
-  category.addEventListener("click", () => {
+  category.addEventListener("click", (event) => {
+    event.preventDefault();
+
     categories.forEach((item) => {
       item.classList.toggle("active", item === category);
     });
+
+    const selectedCategory = category.getAttribute("href").replace("#", "");
+
+    const filteredProducts = products.filter((product) => {
+      return product.category === selectedCategory;
+    });
+
+    renderProducts(filteredProducts);
   });
 });
 
@@ -210,14 +221,62 @@ if ("IntersectionObserver" in window) {
   revealItems.forEach((el) => el.classList.add("is-visible"));
 }
 
-const cartToggle = document.querySelector('.cart-toggle');
-const cartSidebar = document.querySelector('.cart-sidebar');
-const cartClose = document.querySelector('.cart-close');
+const cartToggle = document.querySelector(".cart-toggle");
+const cartSidebar = document.querySelector(".cart-sidebar");
+const cartClose = document.querySelector(".cart-close");
 
-cartToggle.addEventListener('click', () => {
-    cartSidebar.classList.add('active');
+cartToggle.addEventListener("click", () => {
+  cartSidebar.classList.add("active");
 });
 
-cartClose.addEventListener('click', () => {
-    cartSidebar.classList.remove('active');
+cartClose.addEventListener("click", () => {
+  cartSidebar.classList.remove("active");
 });
+
+function createProductCard(product) {
+  return `
+        <article class="product-card ">
+
+            <div class="product-image">
+                <img src="${product.image}" alt="${product.name}">
+                
+            </div>
+
+            <div class="product-info">
+
+                <h3>${product.name}</h3>
+
+                <p>${product.description}</p>
+
+
+                <div class="product-footer">
+
+                    <span class="product-price">
+                        R$ ${product.price.toFixed(2)}
+                    </span>
+
+                    <button
+                        class="add-to-cart"
+                        data-id="${product.id}"
+                        aria-label="Adicionar ${product.name} ao carrinho">
+                        +
+                    </button>
+
+                </div>
+
+            </div>
+
+        </article>
+    `;
+}
+
+function renderProducts(productsToRender) {
+  productsList.innerHTML = productsToRender
+    .map((product) => createProductCard(product))
+    .join("");
+}
+
+// Produtos em destaque ao carregar a página
+const featuredProducts = products.filter((product) => product.featured);
+
+renderProducts(featuredProducts);
