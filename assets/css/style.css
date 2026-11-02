@@ -58,7 +58,6 @@ a {
     width: 100%;
     padding: 0 15px;
     margin-bottom: -35px;
-    /* compensa o espaço em branco do logo (ideal: cortar a imagem) */
 }
 
 /* MENU HAMBÚRGUER */
@@ -76,7 +75,6 @@ a {
     background: transparent;
     cursor: pointer;
     justify-self: start;
-
     position: relative;
     z-index: 103;
 }
@@ -121,7 +119,6 @@ a {
     left: 0;
     width: 100%;
     min-height: calc(100% + 35px);
-    /* nunca menor que o header; cresce conforme os itens */
     z-index: 102;
 
     background: var(--menu-down-background);
@@ -140,6 +137,7 @@ a {
         opacity 0.35s ease,
         transform 0.35s ease,
         visibility 0.35s ease;
+
     -webkit-backdrop-filter: blur(8px);
     backdrop-filter: blur(8px);
 }
@@ -205,9 +203,7 @@ a {
 .menu ul li a {
     display: block;
     padding: 13px 5px;
-
     color: var(--text-color);
-
     font-size: 17px;
     font-weight: 500;
 
@@ -334,17 +330,23 @@ a {
     box-shadow: var(--shadows);
 }
 
+/* ==============================
+   SIDEBAR DO CARRINHO
+============================== */
+
 .cart-sidebar {
     position: fixed;
     top: 0;
     right: 0;
 
-    width: 350px;
+    width: 425px;
     max-width: 100%;
+
     height: 100vh;
+    height: 100dvh;
 
     background: var(--menu-down-background);
-    z-index: 1000;
+    z-index: 999;
 
     transform: translateX(100%);
     transition: transform 0.3s ease;
@@ -366,6 +368,7 @@ a {
     background: transparent;
     font-size: 28px;
     cursor: pointer;
+    z-index: 2;
 }
 
 
@@ -392,13 +395,11 @@ a {
     height: 200px;
     overflow-x: auto;
     overflow-y: hidden;
-    /* impede o movimento vertical */
     overscroll-behavior-x: contain;
     scroll-snap-type: x mandatory;
     scroll-behavior: smooth;
     scrollbar-width: none;
     -webkit-overflow-scrolling: touch;
-    /* remova: touch-action: pan-x; */
 }
 
 .carousel-track::-webkit-scrollbar {
@@ -411,7 +412,6 @@ a {
     height: 100%;
     scroll-snap-align: start;
     overflow: hidden;
-    /* única linha nova */
 }
 
 .carousel-item a {
@@ -429,7 +429,7 @@ a {
     object-position: center;
 }
 
-/* INDICADORES SOBRE A IMAGEM */
+/* INDICADORES */
 
 .carousel-indicators {
     position: absolute;
@@ -504,6 +504,7 @@ a {
     background-color: var(--buttons-categorys-color);
     box-shadow: var(--shadows);
     border: 2px solid transparent;
+
     transition:
         background-color 0.2s ease,
         border-color 0.2s ease;
@@ -559,7 +560,7 @@ a {
     color: var(--text-color);
 }
 
-/* GRID */
+/* LISTA */
 
 .products-list {
     display: grid;
@@ -570,31 +571,29 @@ a {
 /* CARD */
 
 .product-card {
-    min-width: 0;
-    aspect-ratio: 0.53 / 1;
-    display: flex;
+    width: 100%;
+    display: inline-flex;
     flex-direction: column;
+    margin-bottom: 7px;
+    break-inside: avoid;
     overflow: hidden;
     border-radius: 10px;
     background: #fffdfb;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.10);
 }
 
-/* IMAGE - 50% */
+/* IMAGE */
 
 .product-image {
     position: relative;
     width: 100%;
-    height: 50%;
-    flex-shrink: 0;
     overflow: hidden;
 }
 
 .product-image img {
     display: block;
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+    height: auto;
 }
 
 /* BADGE */
@@ -611,10 +610,9 @@ a {
     white-space: nowrap;
 }
 
-/* INFO - 50% */
+/* INFO */
 
 .product-info {
-    flex: 1;
     min-height: 0;
     display: flex;
     flex-direction: column;
@@ -679,6 +677,20 @@ a {
     color: white;
     font-size: 15px;
     cursor: pointer;
+}
+
+/* RESPONSIVIDADE */
+
+@media (min-width: 768px) {
+    .products-list {
+        columns: 3;
+    }
+}
+
+@media (min-width: 1100px) {
+    .products-list {
+        columns: 4;
+    }
 }
 
 
@@ -949,7 +961,10 @@ a {
     }
 }
 
-/* ANIMAÇÃO AO ROLAR */
+
+/* ==============================
+   ANIMAÇÃO AO ROLAR
+============================== */
 
 .js .reveal {
     opacity: 0;
@@ -973,16 +988,27 @@ a {
     }
 }
 
+
+/* ==============================
+   CARRINHO
+============================== */
+
 .cart-container {
     display: flex;
     flex-direction: column;
     width: 100%;
     height: 100%;
-    padding: 65px 18px calc(20px + 60px);
+    min-height: 0;
+
+    /* 50px da navegação + 30px de espaço */
+    padding: 65px 18px calc(80px + env(safe-area-inset-bottom, 0px));
+
     box-sizing: border-box;
-    overflow-y: hidden;
+    overflow: hidden;
     gap: 20px;
     font-family: sans-serif;
+
+
 }
 
 .cart-products {
@@ -991,7 +1017,9 @@ a {
     gap: 20px;
     flex: 1;
     min-height: 0;
-    overflow-y: auto; 
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
 }
 
 .cart-product {
@@ -1000,7 +1028,6 @@ a {
     align-items: center;
     gap: 10px;
     width: 100%;
-    
 }
 
 .cart-product-image {
@@ -1060,6 +1087,8 @@ a {
     align-self: flex-end;
 }
 
+/* RESUMO */
+
 .cart-summary {
     display: flex;
     flex-direction: column;
@@ -1105,7 +1134,10 @@ a {
     font-size: 13px;
     font-weight: 600;
     cursor: pointer;
-    transition: opacity 0.2s, transform 0.2s;
+
+    transition:
+        opacity 0.2s,
+        transform 0.2s;
 }
 
 .cart-checkout:hover {
@@ -1114,4 +1146,77 @@ a {
 
 .cart-checkout:active {
     transform: scale(0.98);
+}
+
+
+/* ==============================
+   MASONRY - CATEGORIAS
+============================== */
+
+.products-list.masonry-active {
+    display: block;
+    columns: 3;
+    column-gap: 7px;
+}
+
+/* CARDS */
+
+.products-list.masonry-active .product-card {
+    width: 100%;
+    height: auto;
+    aspect-ratio: auto;
+
+    display: inline-flex;
+    flex-direction: column;
+
+    margin-bottom: 7px;
+    break-inside: avoid;
+}
+
+/* IMAGENS */
+
+.products-list.masonry-active .product-image {
+    width: 100%;
+    height: 150px;
+    flex-shrink: 0;
+}
+
+/* ALTURAS VARIADAS */
+
+.products-list.masonry-active .product-card:nth-child(6n + 1) .product-image {
+    height: 75px;
+}
+
+.products-list.masonry-active .product-card:nth-child(6n + 2) .product-image {
+    height: 90px;
+}
+
+.products-list.masonry-active .product-card:nth-child(6n + 3) .product-image {
+    height: 85px;
+}
+
+.products-list.masonry-active .product-card:nth-child(6n + 4) .product-image {
+    height: 100px;
+}
+
+.products-list.masonry-active .product-card:nth-child(6n + 5) .product-image {
+    height: 70px;
+}
+
+.products-list.masonry-active .product-card:nth-child(6n + 6) .product-image {
+    height: 80px;
+}
+
+/* IMAGEM */
+
+.products-list.masonry-active .product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* INFORMAÇÕES */
+
+.products-list.masonry-active .product-info {
+    flex: initial;
 }
