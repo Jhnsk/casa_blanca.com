@@ -84,3 +84,29 @@
                     </div>
 
                 </article>
+
+            <!-- cards do carrinho -->
+
+                <div class="cart-product">
+
+                    <div class="cart-product-image">
+                        <img src="assets/images/muffin.jpg" alt="Pizza">
+                    </div>
+
+                    <div class="cart-product-info">
+                        <h3>Chocolate Muffin</h3>
+                        <p>Rich, moist and perfectly baked</p>
+
+                        <div class="cart-product-quantity">
+                            <button type="button">−</button>
+                            <span>1</span>
+                            <button type="button">+</button>
+                        </div>
+
+                    </div>
+
+                    <div class="cart-product-price">
+                        R$ 2.99
+                    </div>
+
+                </div>
