@@ -64,7 +64,7 @@
 
             <div class="cart-products">
 
-                
+
 
             </div>
 
@@ -74,7 +74,7 @@
                     <span>Subtotal</span>
                     <span class="cart-subtotal">R$ 0,00</span>
                 </div>
-    
+
                 <div class="cart-summary-row">
                     <span>Desconto</span>
                     <span class="cart-discount">R$ 0,00</span>
@@ -185,7 +185,7 @@
 
             <div class="products-list">
 
-               
+
 
             </div>
 
@@ -213,6 +213,220 @@
             </div>
 
         </section>
+
+
+        <section class="orders-section" id="encomendas">
+
+            <!-- Cabeçalho -->
+            <div class="section-heading">
+                <h2>Encomendas</h2>
+                <a href="#kits">Ver tudo <span>→</span></a>
+            </div>
+
+            <!-- Categorias -->
+            <div class="order-categories">
+
+                <a href="#monte-bolo" class="category-card">
+                    <span class="category-icon">♧</span>
+                    <strong>Bolos</strong>
+                    <small>A partir de</small>
+                    <b>R$ 65</b>
+                </a>
+
+                <a href="#kits" class="category-card">
+                    <span class="category-icon">♨</span>
+                    <strong>Salgados</strong>
+                    <small>Pedido mínimo</small>
+                    <b>25 unidades</b>
+                </a>
+
+                <a href="#kits" class="category-card">
+                    <span class="category-icon">♧</span>
+                    <strong>Doces</strong>
+                    <small>Pedido mínimo</small>
+                    <b>20 unidades</b>
+                </a>
+
+            </div>
+
+            <!-- Configurador de bolo -->
+            <div class="cake-builder" id="monte-bolo">
+
+                <span class="builder-label">SOB ENCOMENDA</span>
+
+                <h2>Monte seu bolo</h2>
+
+                <p class="builder-description">
+                    Escolha o sabor, o tamanho e o dia.
+                    A gente prepara do jeitinho que você pediu.
+                </p>
+
+                <!-- Etapas -->
+                <div class="builder-steps">
+                    <div class="step active">
+                        <span>1</span>
+                        <small>Sabor</small>
+                    </div>
+
+                    <div class="step">
+                        <span>2</span>
+                        <small>Tamanho</small>
+                    </div>
+
+                    <div class="step">
+                        <span>3</span>
+                        <small>Data</small>
+                    </div>
+
+                    <div class="step">
+                        <span>4</span>
+                        <small>Pedido</small>
+                    </div>
+                </div>
+
+                <!-- Sabores -->
+                <div class="builder-group">
+                    <h4>Sabor da massa</h4>
+
+                    <div class="option-list" data-option-group="flavor">
+                        <button class="choice active" data-value="Chocolate">
+                            Chocolate
+                        </button>
+
+                        <button class="choice" data-value="Baunilha">
+                            Baunilha
+                        </button>
+
+                        <button class="choice" data-value="Red velvet">
+                            Red velvet
+                        </button>
+
+                        <button class="choice" data-value="Limão">
+                            Limão
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Tamanho -->
+                <div class="builder-group">
+                    <h4>Tamanho</h4>
+
+                    <div class="option-list" data-option-group="size">
+                        <button class="choice" data-value="P - 10 fatias" data-price="85">
+                            P · 10 fatias
+                        </button>
+
+                        <button class="choice active" data-value="M - 20 fatias" data-price="120">
+                            M · 20 fatias
+                        </button>
+
+                        <button class="choice" data-value="G - 30 fatias" data-price="160">
+                            G · 30 fatias
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Preço e botão -->
+                <div class="builder-footer">
+                    <div class="total-price">
+                        <small>Total estimado</small>
+                        <strong id="cake-price">R$ 120</strong>
+                    </div>
+
+                    <button class="continue-order" id="continue-order">
+                        Continuar <span>→</span>
+                    </button>
+                </div>
+
+                <p class="order-feedback" id="order-feedback" aria-live="polite"></p>
+
+            </div>
+
+            <!-- Data e horário -->
+            <div class="delivery-section">
+
+                <h3>Quando você precisa?</h3>
+
+                <p>Encomendas com 48h de antecedência.</p>
+
+                <div class="date-options" id="date-options">
+                    <!-- Gerado pelo JavaScript -->
+                </div>
+
+                <div class="time-options" data-option-group="time">
+                    <button class="time-choice active" data-value="Manhã · 8h–12h">
+                        Manhã · 8h–12h
+                    </button>
+
+                    <button class="time-choice" data-value="Tarde · 13h–18h">
+                        Tarde · 13h–18h
+                    </button>
+                </div>
+
+            </div>
+
+            <!-- Kits de festa -->
+            <div class="kits-section" id="kits">
+
+                <div class="section-heading">
+                    <h3>Kits de festa</h3>
+                    <a href="#kits">Ver tudo <span>→</span></a>
+                </div>
+
+                <div class="kits-grid">
+
+                    <article class="kit-card">
+
+                        <div class="kit-image">
+                            <span class="kit-tag">SERVE 20</span>
+                            <span class="kit-illustration">♧</span>
+                        </div>
+
+                        <div class="kit-info">
+                            <h4>Kit Aniversário</h4>
+                            <p>Bolo M, 50 salgados e 30 docinhos</p>
+
+                            <div class="kit-footer">
+                                <strong>R$ 289</strong>
+
+                                <button class="add-kit" data-name="Kit Aniversário" data-price="289"
+                                    aria-label="Adicionar Kit Aniversário">
+                                    +
+                                </button>
+                            </div>
+                        </div>
+
+                    </article>
+
+                    <article class="kit-card">
+
+                        <div class="kit-image">
+                            <span class="kit-tag">100 UN.</span>
+                            <span class="kit-illustration">♧</span>
+                        </div>
+
+                        <div class="kit-info">
+                            <h4>Centro de salgados</h4>
+                            <p>Coxinha, risole e bolinha de queijo</p>
+
+                            <div class="kit-footer">
+                                <strong>R$ 120</strong>
+
+                                <button class="add-kit" data-name="Centro de salgados" data-price="120"
+                                    aria-label="Adicionar Centro de salgados">
+                                    +
+                                </button>
+                            </div>
+                        </div>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
     </main>
 
     <nav class="bottom_navigation" aria-label="Navegação principal">
@@ -245,6 +459,7 @@
     </nav>
     <script src="assets/script/products.js"></script>
     <script src="assets/script/script.js"></script>
+    <script src="assets/script/orders.js"></script>
 </body>
 
 </html>

@@ -1248,3 +1248,452 @@ a {
 .products-list.masonry-active .product-info {
     flex: initial;
 }
+
+
+/* ==============================
+   ENCOMENDAS
+============================== */
+
+.orders-section {
+    width: 100%;
+    padding: 20px 12px;
+    color: #351b13;
+    background: #fffaf5;
+}
+
+.section-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+.section-heading h2,
+.section-heading h3 {
+    font-family: Georgia, serif;
+    font-size: 19px;
+    font-weight: 600;
+}
+
+.section-heading a {
+    color: #603526;
+    font-size: 11px;
+    text-decoration: none;
+}
+
+.section-heading a span {
+    font-size: 15px;
+    margin-left: 3px;
+}
+
+/* Categorias */
+
+.order-categories {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 7px;
+    margin-bottom: 13px;
+}
+
+.category-card {
+    min-width: 0;
+    padding: 12px 5px;
+    border: 1px solid #f0e4da;
+    border-radius: 13px;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    text-align: center;
+    text-decoration: none;
+    color: #45251b;
+}
+
+.category-icon {
+    font-size: 23px;
+    color: #a96c50;
+    margin-bottom: 3px;
+}
+
+.category-card strong {
+    font-family: Georgia, serif;
+    font-size: 12px;
+}
+
+.category-card small {
+    font-size: 8px;
+    color: #987f72;
+}
+
+.category-card b {
+    font-size: 9px;
+}
+
+/* ==============================
+   MONTE SEU BOLO
+============================== */
+
+.cake-builder {
+    background: #452117;
+    color: #fff8f0;
+    border-radius: 17px;
+    padding: 17px 13px 13px;
+    margin-bottom: 17px;
+}
+
+.builder-label {
+    color: #e8ad68;
+    font-size: 8px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.cake-builder>h2 {
+    font-family: Georgia, serif;
+    font-size: 23px;
+    font-weight: 400;
+    margin: 5px 0;
+}
+
+.builder-description {
+    font-size: 10px;
+    line-height: 1.5;
+    color: #e5c9b9;
+    max-width: 260px;
+}
+
+/* Etapas */
+
+.builder-steps {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin: 18px 0;
+}
+
+.step {
+    flex: 1;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.step:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    height: 1px;
+    background: #795345;
+    width: 100%;
+    left: 50%;
+    top: 11px;
+}
+
+.step span {
+    position: relative;
+    z-index: 1;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background: #56382d;
+    border: 1px solid #9a705d;
+    color: #f4d9c8;
+    font-size: 9px;
+}
+
+.step.active span {
+    background: #e9b66e;
+    color: #452117;
+    border-color: #e9b66e;
+}
+
+.step small {
+    font-size: 8px;
+    color: #d9bcae;
+}
+
+/* Opções */
+
+.builder-group {
+    margin-bottom: 15px;
+}
+
+.builder-group h4 {
+    font-size: 10px;
+    margin-bottom: 8px;
+}
+
+.option-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.choice {
+    background: transparent;
+    border: 1px solid #916b5a;
+    color: #f9e9df;
+    padding: 7px 10px;
+    border-radius: 30px;
+    font-size: 9px;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.choice.active {
+    background: #fff5ed;
+    color: #49251b;
+    border-color: #fff5ed;
+}
+
+/* Rodapé do configurador */
+
+.builder-footer {
+    border-top: 1px solid #70483a;
+    padding-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.total-price {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.total-price small {
+    color: #d9bcae;
+    font-size: 9px;
+}
+
+.total-price strong {
+    font-size: 17px;
+}
+
+.continue-order {
+    background: #fff5ed;
+    color: #452117;
+    border: none;
+    border-radius: 30px;
+    padding: 10px 15px;
+    font-size: 10px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.continue-order span {
+    margin-left: 7px;
+}
+
+.order-feedback {
+    font-size: 10px;
+    color: #f1c58d;
+    margin-top: 9px;
+}
+
+/* ==============================
+   DATA E HORÁRIO
+============================== */
+
+.delivery-section {
+    margin-bottom: 22px;
+}
+
+.delivery-section h3 {
+    font-family: Georgia, serif;
+    font-size: 15px;
+    margin-bottom: 3px;
+}
+
+.delivery-section>p {
+    color: #947e72;
+    font-size: 9px;
+    margin-bottom: 10px;
+}
+
+.date-options {
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    gap: 4px;
+    margin-bottom: 9px;
+}
+
+.date-choice {
+    min-width: 0;
+    padding: 7px 1px;
+    background: white;
+    border: 1px solid #eee0d5;
+    border-radius: 9px;
+    color: #624638;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    cursor: pointer;
+}
+
+.date-choice small {
+    font-size: 7px;
+}
+
+.date-choice strong {
+    font-size: 10px;
+}
+
+.date-choice.active {
+    background: #713a29;
+    color: white;
+    border-color: #713a29;
+}
+
+.time-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.time-choice {
+    background: #fff;
+    border: 1px solid #ead9cc;
+    color: #684536;
+    padding: 8px 11px;
+    border-radius: 30px;
+    font-size: 9px;
+    cursor: pointer;
+}
+
+.time-choice.active {
+    background: #713a29;
+    border-color: #713a29;
+    color: white;
+}
+
+/* ==============================
+   KITS DE FESTA
+============================== */
+
+.kits-section {
+    margin-bottom: 20px;
+}
+
+.kits-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 9px;
+}
+
+.kit-card {
+    overflow: hidden;
+    border-radius: 12px;
+    background: white;
+    border: 1px solid #f0e4da;
+    min-width: 0;
+}
+
+.kit-image {
+    height: 105px;
+    background: #f0dfc9;
+    position: relative;
+    display: grid;
+    place-items: center;
+}
+
+.kit-tag {
+    position: absolute;
+    top: 8px;
+    left: 7px;
+    background: #713a29;
+    color: white;
+    padding: 4px 6px;
+    border-radius: 20px;
+    font-size: 7px;
+    font-weight: 700;
+}
+
+.kit-illustration {
+    font-size: 40px;
+    color: #a36c50;
+}
+
+.kit-info {
+    padding: 9px 7px;
+}
+
+.kit-info h4 {
+    font-family: Georgia, serif;
+    font-size: 11px;
+    margin-bottom: 4px;
+}
+
+.kit-info p {
+    color: #927b6e;
+    font-size: 8px;
+    line-height: 1.4;
+    min-height: 23px;
+}
+
+.kit-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 6px;
+}
+
+.kit-footer strong {
+    font-size: 12px;
+}
+
+.add-kit {
+    border: none;
+    background: #813e29;
+    color: white;
+    border-radius: 50%;
+    width: 27px;
+    height: 27px;
+    font-size: 19px;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.add-kit:active {
+    transform: scale(.9);
+}
+
+/* ==============================
+   TELAS MAIORES
+============================== */
+
+@media (min-width: 600px) {
+    .orders-section {
+        max-width: 900px;
+        margin: auto;
+        padding: 30px 20px;
+    }
+
+    .order-categories {
+        gap: 12px;
+    }
+
+    .category-card {
+        padding: 18px;
+    }
+
+    .cake-builder {
+        padding: 25px;
+    }
+
+    .kits-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .kit-image {
+        height: 150px;
+    }
+}
