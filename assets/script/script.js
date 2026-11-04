@@ -116,7 +116,7 @@ categories.forEach((category) => {
       return product.category === selectedCategory;
     });
 
-    renderProducts(filteredProducts, true);
+    renderProducts(filteredProducts, "carousel");
   });
 });
 
@@ -275,12 +275,16 @@ function createProductCard(product) {
     `;
 }
 
-function renderProducts(productsToRender, masonry = false) {
-  productsList.classList.toggle("masonry-active", masonry);
+function renderProducts(productsToRender, layout = "grid") {
+  productsList.classList.remove("masonry-active", "carousel");
+
+  if (layout === "carousel") {
+      productsList.classList.add("carousel");
+  }
 
   productsList.innerHTML = productsToRender
-    .map((product) => createProductCard(product))
-    .join("");
+      .map((product) => createProductCard(product))
+      .join("");
 }
 
 // Produtos em destaque ao carregar a página
@@ -341,6 +345,12 @@ productsList.addEventListener("click", (event) => {
   const productId = Number(button.dataset.id);
 
   addToCart(productId);
+
+  button.classList.add("added");
+
+  setTimeout(() => {
+      button.classList.remove("added");
+  }, 800);
 });
 
 // Renderizar produtos do carrinho
