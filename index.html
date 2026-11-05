@@ -229,6 +229,7 @@
                             <h2>Encomendas</h2>
                         </div>
 
+                        <!-- Abre o carrinho único (a lógica está no orders.js) -->
                         <button class="order-summary-toggle" id="order-summary-toggle">
                             Meu pedido
                             <span class="order-cart-count" id="order-cart-count">0</span>
@@ -248,7 +249,7 @@
 
                     <button class="order-category active" data-order-category="bolos" type="button">
                         <span class="order-category-icon">
-                            <img src="assets/images/order-bolos.png" alt="">
+                            <img src="assets/images/cake.png" alt="">
                         </span>
 
                         <span>Bolos</span>
@@ -257,7 +258,7 @@
 
                     <button class="order-category" data-order-category="salgados" type="button">
                         <span class="order-category-icon">
-                            <img src="assets/images/order-salgados.png" alt="">
+                            <img src="assets/images/bakery.png" alt="">
                         </span>
 
                         <span>Salgados</span>
@@ -266,7 +267,7 @@
 
                     <button class="order-category" data-order-category="doces" type="button">
                         <span class="order-category-icon">
-                            <img src="assets/images/order-doces.png" alt="">
+                            <img src="assets/images/cookie.png" alt="">
                         </span>
 
                         <span>Doces</span>
@@ -297,66 +298,6 @@
                     -->
 
                 </div>
-
-
-                <!-- MEU PEDIDO -->
-                <section class="order-summary" id="order-summary">
-
-                    <div class="order-summary-header">
-
-                        <div>
-                            <span class="section-subtitle">SUA SELEÇÃO</span>
-                            <h3>Meu pedido</h3>
-                        </div>
-
-                        <span class="order-summary-count" id="order-summary-count">
-                            0 itens
-                        </span>
-
-                    </div>
-
-
-                    <div class="order-summary-empty" id="order-summary-empty">
-
-                        <span class="empty-order-icon">
-                            <icon name="shopping-bag" size="32" />
-                        </span>
-
-                        <h4>Sua encomenda está vazia</h4>
-
-                        <p>
-                            Escolha seus produtos e eles aparecerão aqui.
-                        </p>
-
-                    </div>
-
-
-                    <div class="order-summary-products" id="order-summary-products">
-
-                        <!-- Itens adicionados pelo orders.js -->
-
-                    </div>
-
-
-                    <div class="order-summary-footer">
-
-                        <div class="order-total">
-                            <span>Total estimado</span>
-                            <strong id="order-total">R$ 0,00</strong>
-                        </div>
-
-                        <button type="button" class="finish-order-button" id="finish-order-button" disabled>
-                            Continuar encomenda
-                            <icon name="arrow-right" size="18" />
-                        </button>
-
-                        <p class="order-summary-notice">
-                            Alguns itens personalizados podem precisar de orçamento.
-                        </p>
-
-                    </div>
-
-                </section>
 
 
                 <!-- KITS PRONTOS -->
@@ -476,6 +417,9 @@
         </a>
 
     </nav>
+
+    <!-- cart.js precisa vir primeiro: os outros scripts usam o Cart -->
+    <script src="assets/script/cart.js"></script>
     <script src="assets/script/products.js"></script>
     <script src="assets/script/script.js"></script>
     <script src="assets/script/orders.js"></script>

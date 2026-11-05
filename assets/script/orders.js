@@ -5,8 +5,6 @@
      CONFIGURAÇÕES
   ======================================== */
 
-  const WHATSAPP_NUMBER = ""; // Exemplo: 5575999999999
-
   const formatPrice = (value) =>
     Number(value).toLocaleString("pt-BR", {
       style: "currency",
@@ -23,7 +21,7 @@
         id: "bolo-chocolate",
         name: "Bolo de chocolate",
         description: "Massa de chocolate com recheio cremoso.",
-        image: "assets/images/bolo-chocolate.jpg",
+        image: "assets/images/bolodechocolate.jpg",
         price: 85,
         priceLabel: "A partir de",
         type: "bolo",
@@ -50,7 +48,7 @@
         id: "bolo-ninho",
         name: "Bolo de Ninho",
         description: "Massa fofinha com recheio de leite Ninho.",
-        image: "assets/images/bolo-ninho.jpg",
+        image: "assets/images/bolodeninho.jpg",
         price: 90,
         priceLabel: "A partir de",
         type: "bolo",
@@ -81,7 +79,7 @@
         id: "bolo-cenoura",
         name: "Bolo de cenoura",
         description: "Bolo caseiro com cobertura de chocolate.",
-        image: "assets/images/bolo-cenoura.jpg",
+        image: "assets/images/bolodecenoura.jpg",
         price: 65,
         priceLabel: "A partir de",
         type: "bolo",
@@ -108,7 +106,7 @@
         id: "bolo-morango",
         name: "Bolo de morango",
         description: "Combinação de morangos e creme especial.",
-        image: "assets/images/bolo-morango.jpg",
+        image: "assets/images/bolodemorango.jpg",
         price: 95,
         priceLabel: "A partir de",
         type: "bolo",
@@ -158,7 +156,7 @@
         id: "bolinha-queijo",
         name: "Bolinha de queijo",
         description: "Salgadinho com queijo e massa crocante.",
-        image: "assets/images/bolinha-queijo.jpg",
+        image: "assets/images/bolinhodequeijo.jpg",
         price: 80,
         priceLabel: "Cento",
         type: "cento",
@@ -168,7 +166,7 @@
         id: "empada",
         name: "Empadinha",
         description: "Empadinhas com massa leve e recheio especial.",
-        image: "assets/images/empada.jpg",
+        image: "assets/images/enpadinhas.jpg",
         price: 90,
         priceLabel: "Cento",
         type: "cento",
@@ -211,7 +209,7 @@
         id: "docinho-ninho",
         name: "Docinho de Ninho",
         description: "Docinhos delicados de leite em pó.",
-        image: "assets/images/docinho-ninho.jpg",
+        image: "assets/images/docinhodeninho.jpg",
         price: 110,
         priceLabel: "Cento",
         type: "cento",
@@ -239,13 +237,7 @@
     addButton: document.querySelector("#add-order-button"),
 
     summaryToggle: document.querySelector("#order-summary-toggle"),
-    summary: document.querySelector("#order-summary"),
-    summaryCount: document.querySelector("#order-summary-count"),
     cartCount: document.querySelector("#order-cart-count"),
-    summaryEmpty: document.querySelector("#order-summary-empty"),
-    summaryProducts: document.querySelector("#order-summary-products"),
-    total: document.querySelector("#order-total"),
-    finishButton: document.querySelector("#finish-order-button"),
   };
 
   /* ========================================
@@ -264,13 +256,7 @@
     "modalTotal",
     "addButton",
     "summaryToggle",
-    "summary",
-    "summaryCount",
     "cartCount",
-    "summaryEmpty",
-    "summaryProducts",
-    "total",
-    "finishButton",
   ];
 
   const missingElements = requiredElements.filter((key) => !elements[key]);
@@ -285,11 +271,11 @@
 
   /* ========================================
      ESTADO DA APLICAÇÃO
+     (o carrinho em si agora é o módulo Cart, do cart.js)
   ======================================== */
 
   let activeCategory = "bolos";
   let selectedProduct = null;
-  let orderCart = [];
 
   let selectedOptions = {
     size: 0,
@@ -691,7 +677,9 @@
 
       const quoteRequired = Boolean(decoration.quote);
 
-      const total = quoteRequired ? null : size.price + (decoration.price || 0);
+      // valor base do bolo (tamanho + decoração com preço fixo);
+      // se a decoração for sob orçamento, o carrinho mostra "+ orçamento"
+      const unitPrice = size.price + (decoration.price || 0);
 
       return {
         description: [
@@ -704,8 +692,8 @@
           .filter(Boolean)
           .join(" | "),
         quantity: 1,
-        unitPrice: total,
-        total,
+        unitPrice,
+        total: quoteRequired ? null : unitPrice,
         quoteRequired,
       };
     }
@@ -746,7 +734,7 @@
   }
 
   /* ========================================
-     ADICIONAR PRODUTO AO PEDIDO
+     ADICIONAR PRODUTO AO CARRINHO ÚNICO
   ======================================== */
 
   elements.addButton.addEventListener("click", () => {
@@ -756,21 +744,17 @@
 
     if (!configuration) return;
 
-    const item = {
-      id: `${selectedProduct.id}-${Date.now()}`,
-      productId: selectedProduct.id,
+    Cart.add({
+      sku: `order-${selectedProduct.id}`,
+      kind: "encomenda",
       name: selectedProduct.name,
       image: selectedProduct.image,
-      description: configuration.description,
-      quantity: configuration.quantity,
+      details: configuration.description,
       unitPrice: configuration.unitPrice,
-      total: configuration.total,
-      quoteRequired: configuration.quoteRequired,
-    };
+      quantity: configuration.quantity,
+      quote: configuration.quoteRequired,
+    });
 
-    orderCart.push(item);
-
-    renderOrderSummary();
     closeModal();
   });
 
@@ -785,169 +769,28 @@
 
       if (!name || !Number.isFinite(price)) return;
 
-      orderCart.push({
-        id: `kit-${Date.now()}`,
-        productId: "kit",
+      Cart.add({
+        sku: `kit-${name}`,
+        kind: "encomenda",
         name,
-        image: "",
-        description: "Kit pronto",
-        quantity: 1,
+        image: button.dataset.image || "",
+        details: "Kit pronto",
         unitPrice: price,
-        total: price,
-        quoteRequired: false,
       });
-
-      renderOrderSummary();
     });
   });
 
   /* ========================================
-     RENDERIZAR RESUMO DO PEDIDO
-  ======================================== */
-
-  function renderOrderSummary() {
-    const itemCount = orderCart.reduce(
-      (total, item) => total + item.quantity,
-      0
-    );
-
-    const hasQuote = orderCart.some((item) => item.quoteRequired);
-
-    const estimatedTotal = orderCart.reduce(
-      (total, item) => total + (item.total || 0),
-      0
-    );
-
-    elements.cartCount.textContent = itemCount;
-
-    elements.summaryCount.textContent = `${itemCount} ${
-      itemCount === 1 ? "item" : "itens"
-    }`;
-
-    elements.total.textContent = hasQuote
-      ? `${formatPrice(estimatedTotal)} + orçamento`
-      : formatPrice(estimatedTotal);
-
-    elements.summaryEmpty.hidden = orderCart.length > 0;
-    elements.summaryProducts.innerHTML = "";
-
-    elements.finishButton.disabled = orderCart.length === 0;
-
-    orderCart.forEach((item) => {
-      const row = document.createElement("article");
-      row.className = "order-summary-item";
-
-      const image = item.image
-        ? `<img src="${item.image}" alt="${item.name}">`
-        : `<div class="order-summary-placeholder">Kit</div>`;
-
-      row.innerHTML = `
-        ${image}
-
-        <div class="order-summary-item-info">
-          <h4>${item.name}</h4>
-          <p>${item.description}</p>
-          <p>
-            ${
-              item.quoteRequired
-                ? "Valor sob orçamento"
-                : formatPrice(item.total)
-            }
-          </p>
-        </div>
-
-        <button
-          type="button"
-          class="remove-order-item"
-          data-remove-id="${item.id}"
-          aria-label="Remover ${item.name}"
-        >
-          ×
-        </button>
-      `;
-
-      elements.summaryProducts.appendChild(row);
-    });
-  }
-
-  /* ========================================
-     REMOVER ITEM DO PEDIDO
-  ======================================== */
-
-  elements.summaryProducts.addEventListener("click", (event) => {
-    const button = event.target.closest("[data-remove-id]");
-
-    if (!button) return;
-
-    orderCart = orderCart.filter((item) => item.id !== button.dataset.removeId);
-
-    renderOrderSummary();
-  });
-
-  /* ========================================
-     ABRIR RESUMO DO PEDIDO
+     BOTÃO "MEU PEDIDO" -> ABRE O CARRINHO
   ======================================== */
 
   elements.summaryToggle.addEventListener("click", () => {
-    elements.summary.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-    });
+    document.querySelector(".cart-sidebar").classList.add("active");
   });
 
-  /* ========================================
-     FINALIZAR ENCOMENDA
-  ======================================== */
-
-  elements.finishButton.addEventListener("click", () => {
-    if (!orderCart.length) return;
-
-    const hasQuote = orderCart.some((item) => item.quoteRequired);
-
-    const lines = orderCart.map((item) => {
-      const price = item.quoteRequired
-        ? "Sob orçamento"
-        : formatPrice(item.total);
-
-      return [
-        `• ${item.name}`,
-        `  ${item.description}`,
-        `  Valor: ${price}`,
-      ].join("\n");
-    });
-
-    const estimatedTotal = orderCart.reduce(
-      (total, item) => total + (item.total || 0),
-      0
-    );
-
-    const message = [
-      "Olá! Gostaria de fazer uma encomenda:",
-      "",
-      ...lines,
-      "",
-      `Total estimado: ${formatPrice(estimatedTotal)}`,
-      hasQuote ? "Alguns itens precisam de orçamento." : "",
-      "",
-      "Gostaria de confirmar a disponibilidade.",
-    ]
-      .filter(Boolean)
-      .join("\n");
-
-    if (!WHATSAPP_NUMBER) {
-      alert(
-        "O pedido está montado! Configure o número da confeitaria no início do orders.js para enviar pelo WhatsApp."
-      );
-
-      console.log(message);
-      return;
-    }
-
-    const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
-      message
-    )}`;
-
-    window.open(url, "_blank", "noopener,noreferrer");
+  // contador do botão acompanha o carrinho único
+  Cart.subscribe(({ count }) => {
+    elements.cartCount.textContent = count;
   });
 
   /* ========================================
@@ -955,5 +798,4 @@
   ======================================== */
 
   renderProducts(activeCategory);
-  renderOrderSummary();
 })();

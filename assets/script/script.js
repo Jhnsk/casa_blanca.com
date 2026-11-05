@@ -96,10 +96,6 @@ if (!reduceMotion) {
    CATEGORIAS
 ============================== */
 
-/* ==============================
-   CATEGORIAS
-============================== */
-
 const categories = document.querySelectorAll(".category_item");
 
 categories.forEach((category) => {
@@ -293,24 +289,16 @@ const featuredProducts = products.filter((product) => product.featured);
 renderProducts(featuredProducts);
 
 /* ==============================
-   CARRINHO
+   CARRINHO (usa o módulo Cart do cart.js)
 ============================== */
-
-let cart = [];
 
 const cartProducts = document.querySelector(".cart-products");
 const cartSubtotal = document.querySelector(".cart-subtotal");
 const cartDiscount = document.querySelector(".cart-discount");
 const cartTotal = document.querySelector(".cart-total");
 
-function updateCartCount() {
-  const totalItems = cart.reduce((total, item) => {
-    return total + item.quantity;
-  }, 0);
-
-  cartCount.textContent = totalItems;
-  cartCount.hidden = totalItems === 0;
-}
+// Número do WhatsApp da loja. Exemplo: 5575999999999
+const WHATSAPP_NUMBER = "";
 
 // Formatar valores em reais
 function formatPrice(value) {
@@ -320,79 +308,54 @@ function formatPrice(value) {
   });
 }
 
-// Adicionar produto ao carrinho
-function addToCart(productId) {
-  const existingItem = cart.find((item) => item.id === productId);
-
-  if (existingItem) {
-    existingItem.quantity++;
-  } else {
-    cart.push({
-      id: productId,
-      quantity: 1,
-    });
+// Texto do valor de cada linha do carrinho
+function getItemPriceHTML(item) {
+  if (item.quote && !item.unitPrice) {
+    return "Sob orçamento";
   }
 
-  renderCart();
+  const price = formatPrice(item.unitPrice * item.quantity);
+
+  if (item.quote) {
+    return `${price}<small style="display:block;font-size:9px;font-weight:400;color:#888;">+ orçamento</small>`;
+  }
+
+  return price;
 }
 
-// Escutar os cliques nos botões dos produtos
-productsList.addEventListener("click", (event) => {
-  const button = event.target.closest(".add-to-cart");
+// Desenhar o carrinho sempre que o estado mudar
+function renderCart({ items: cartItems, count, subtotal, hasQuote }) {
+  // contador do ícone do carrinho
+  cartCount.textContent = count;
+  cartCount.hidden = count === 0;
 
-  if (!button) return;
-
-  const productId = Number(button.dataset.id);
-
-  addToCart(productId);
-
-  button.classList.add("added");
-
-  setTimeout(() => {
-      button.classList.remove("added");
-  }, 800);
-});
-
-// Renderizar produtos do carrinho
-
-function renderCart() {
-  if (cart.length === 0) {
+  if (cartItems.length === 0) {
     cartProducts.innerHTML = "<p>Seu carrinho está vazio.</p>";
-    updateCartSummary();
-    updateCartCount();
-    return;
-  }
-
-  cartProducts.innerHTML = cart
-    .map((item) => {
-      const product = products.find((product) => product.id === item.id);
-
-      return `
+  } else {
+    cartProducts.innerHTML = cartItems
+      .map((item) => {
+        return `
           <div class="cart-product">
 
               <div class="cart-product-image">
-                  <img src="${product.image}" alt="${product.name}">
+                  ${item.image ? `<img src="${item.image}" alt="${item.name}">` : ""}
               </div>
 
               <div class="cart-product-info">
 
-                  <h3>${product.name}</h3>
+                  <h3>${item.name}</h3>
 
-                  <p>${product.description}</p>
+                  <p>${item.details}</p>
 
                   <div class="cart-product-quantity">
 
-                      <button type="button" data-action="decrease" data-id="${
-                        product.id
-                      }">
+                      <button type="button" data-action="decrease" data-uid="${item.uid}">
                           −
                       </button>
 
                       <span>${item.quantity}</span>
 
-                      <button type="button" data-action="increase" data-id="${
-                        product.id
-                      }">
+                      <button type="button" data-action="increase" data-uid="${item.uid}">
                           +
                       </button>
 
@@ -401,16 +364,22 @@ function renderCart() {
               </div>
 
               <div class="cart-product-price">
-                  ${formatPrice(product.price * item.quantity)}
+                  ${getItemPriceHTML(item)}
               </div>
 
           </div>
       `;
-    })
-    .join("");
+      })
+      .join("");
+  }
 
-  updateCartSummary();
-  updateCartCount();
+  const discount = 0;
+
+  cartSubtotal.textContent = formatPrice(subtotal);
+  cartDiscount.textContent = formatPrice(discount);
+  cartTotal.textContent = hasQuote
+    ? `${formatPrice(subtotal - discount)} + orçamento`
+    : formatPrice(subtotal - discount);
 }
 
 // Controlar quantidade dos produtos no carrinho
@@ -419,42 +388,94 @@ cartProducts.addEventListener("click", (event) => {
 
   if (!button) return;
 
-  const productId = Number(button.dataset.id);
-
-  const item = cart.find((item) => item.id === productId);
-
-  if (!item) return;
-
-  if (button.dataset.action === "increase") {
-    item.quantity++;
-  }
-
-  if (button.dataset.action === "decrease") {
-    item.quantity--;
-
-    if (item.quantity <= 0) {
-      cart = cart.filter((item) => item.id !== productId);
-    }
-  }
-
-  renderCart();
+  Cart.changeQuantity(
+    button.dataset.uid,
+    button.dataset.action === "increase" ? 1 : -1
+  );
 });
 
-// Atualizar valores do carrinho
-function updateCartSummary() {
-  const subtotal = cart.reduce((total, item) => {
-    const product = products.find((product) => product.id === item.id);
+// Escutar os cliques nos botões dos produtos (Popular Picks)
+productsList.addEventListener("click", (event) => {
+  const button = event.target.closest(".add-to-cart");
 
-    return total + product.price * item.quantity;
-  }, 0);
+  if (!button) return;
 
-  const discount = 0;
-  const total = subtotal - discount;
+  const product = products.find(
+    (item) => item.id === Number(button.dataset.id)
+  );
 
-  cartSubtotal.textContent = formatPrice(subtotal);
-  cartDiscount.textContent = formatPrice(discount);
-  cartTotal.textContent = formatPrice(total);
-}
+  if (!product) return;
 
-// Estado inicial
-renderCart();
+  Cart.add({
+    sku: `menu-${product.id}`,
+    kind: "menu",
+    name: product.name,
+    image: product.image,
+    details: product.description,
+    unitPrice: product.price,
+  });
+
+  button.classList.add("added");
+
+  setTimeout(() => {
+      button.classList.remove("added");
+  }, 800);
+});
+
+// Finalizar pedido (cardápio + encomendas na mesma mensagem)
+document.querySelector(".cart-checkout").addEventListener("click", () => {
+  const { items: cartItems, subtotal, hasQuote } = Cart.getState();
+
+  if (!cartItems.length) return;
+
+  const formatLine = (item) => {
+    const price =
+      item.quote && !item.unitPrice
+        ? "Sob orçamento"
+        : formatPrice(item.unitPrice * item.quantity) +
+          (item.quote ? " + orçamento" : "");
+
+    return [
+      `• ${item.quantity}x ${item.name}`,
+      item.details ? `  ${item.details}` : "",
+      `  Valor: ${price}`,
+    ]
+      .filter(Boolean)
+      .join("\n");
+  };
+
+  const menuItems = cartItems.filter((item) => item.kind === "menu");
+  const orderItems = cartItems.filter((item) => item.kind === "encomenda");
+
+  const message = [
+    "Olá! Gostaria de fazer um pedido:",
+    menuItems.length
+      ? `\n*Pedido do cardápio*\n${menuItems.map(formatLine).join("\n")}`
+      : "",
+    orderItems.length
+      ? `\n*Encomendas*\n${orderItems.map(formatLine).join("\n")}`
+      : "",
+    `\nTotal estimado: ${formatPrice(subtotal)}`,
+    hasQuote ? "Alguns itens precisam de orçamento." : "",
+  ]
+    .filter(Boolean)
+    .join("\n");
+
+  if (!WHATSAPP_NUMBER) {
+    alert(
+      "O pedido está montado! Configure o WHATSAPP_NUMBER no início da seção CARRINHO do script.js para enviar pelo WhatsApp."
+    );
+
+    console.log(message);
+    return;
+  }
+
+  const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
+    message
+  )}`;
+
+  window.open(url, "_blank", "noopener,noreferrer");
+});
+
+// Estado inicial + atualização automática
+Cart.subscribe(renderCart);
