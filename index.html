@@ -139,7 +139,7 @@
 
         </section>
 
-        <section class="categories reveal" aria-label="Categorias">
+        <section class="categories" aria-label="Categorias">
 
             <div class="categories_list">
                 <a href="#cafe" class="category_item">
@@ -176,7 +176,7 @@
 
         <section class="popular-products" aria-labelledby="popular-title">
 
-            <div class="section-header reveal">
+            <div class="section-header">
                 <h2 id="popular-title">Popular Picks</h2>
 
                 <a href="#todos-produtos" class="view-all">
@@ -218,209 +218,227 @@
 
         <section class="orders-section" id="encomendas">
 
-            <!-- Cabeçalho -->
-            <div class="section-heading">
-                <h2>Encomendas</h2>
-                <a href="#kits">Ver tudo <span>→</span></a>
-            </div>
+            <div class="orders-content">
 
-            <!-- Categorias -->
-            <div class="order-categories">
+                <!-- CABEÇALHO -->
+                <div class="orders-header">
 
-                <a href="#monte-bolo" class="category-card">
-                    <span class="category-icon"><img src="assets/images/cake.png" alt=""></span>
-                    <strong>Bolos</strong>
-                    <small>A partir de</small>
-                    <b>R$ 65</b>
-                </a>
+                    <div class="section-heading">
+                        <div>
+                            <span class="section-subtitle">FEITO COM CARINHO</span>
+                            <h2>Encomendas</h2>
+                        </div>
 
-                <a href="#kits" class="category-card">
-                    <span class="category-icon"><img src="assets/images/bakery.png" alt=""></span>
-                    <strong>Salgados</strong>
-                    <small>Pedido mínimo</small>
-                    <b>25 unidades</b>
-                </a>
-
-                <a href="#kits" class="category-card">
-                    <span class="category-icon"><img src="assets/images/cookie.png" alt=""></span>
-                    <strong>Doces</strong>
-                    <small>Pedido mínimo</small>
-                    <b>20 unidades</b>
-                </a>
-
-            </div>
-
-            <!-- Configurador de bolo -->
-            <div class="cake-builder" id="monte-bolo">
-
-                <span class="builder-label">SOB ENCOMENDA</span>
-
-                <h2>Monte seu bolo</h2>
-
-                <p class="builder-description">
-                    Escolha o sabor, o tamanho e o dia.
-                    A gente prepara do jeitinho que você pediu.
-                </p>
-
-                <!-- Etapas -->
-                <div class="builder-steps">
-                    <div class="step active">
-                        <span>1</span>
-                        <small>Sabor</small>
+                        <button class="order-summary-toggle" id="order-summary-toggle">
+                            Meu pedido
+                            <span class="order-cart-count" id="order-cart-count">0</span>
+                        </button>
                     </div>
 
-                    <div class="step">
-                        <span>2</span>
-                        <small>Tamanho</small>
-                    </div>
+                    <p class="orders-description">
+                        Escolha suas delícias e personalize sua encomenda
+                        para deixar seu momento ainda mais especial.
+                    </p>
 
-                    <div class="step">
-                        <span>3</span>
-                        <small>Data</small>
-                    </div>
-
-                    <div class="step">
-                        <span>4</span>
-                        <small>Pedido</small>
-                    </div>
                 </div>
 
-                <!-- Sabores -->
-                <div class="builder-group">
-                    <h4>Sabor da massa</h4>
 
-                    <div class="option-list" data-option-group="flavor">
-                        <button class="choice active" data-value="Chocolate">
-                            Chocolate
-                        </button>
+                <!-- CATEGORIAS -->
+                <div class="order-categories">
 
-                        <button class="choice" data-value="Baunilha">
-                            Baunilha
-                        </button>
+                    <button class="order-category active" data-order-category="bolos" type="button">
+                        <span class="order-category-icon">
+                            <img src="assets/images/order-bolos.png" alt="">
+                        </span>
 
-                        <button class="choice" data-value="Red velvet">
-                            Red velvet
-                        </button>
-
-                        <button class="choice" data-value="Limão">
-                            Limão
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Tamanho -->
-                <div class="builder-group">
-                    <h4>Tamanho</h4>
-
-                    <div class="option-list" data-option-group="size">
-                        <button class="choice" data-value="P - 10 fatias" data-price="85">
-                            P · 10 fatias
-                        </button>
-
-                        <button class="choice active" data-value="M - 20 fatias" data-price="120">
-                            M · 20 fatias
-                        </button>
-
-                        <button class="choice" data-value="G - 30 fatias" data-price="160">
-                            G · 30 fatias
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Preço e botão -->
-                <div class="builder-footer">
-                    <div class="total-price">
-                        <small>Total estimado</small>
-                        <strong id="cake-price">R$ 120</strong>
-                    </div>
-
-                    <button class="continue-order" id="continue-order">
-                        Continuar <span>→</span>
-                    </button>
-                </div>
-
-                <p class="order-feedback" id="order-feedback" aria-live="polite"></p>
-
-            </div>
-
-            <!-- Data e horário -->
-            <div class="delivery-section">
-
-                <h3>Quando você precisa?</h3>
-
-                <p>Encomendas com 48h de antecedência.</p>
-
-                <div class="date-options" id="date-options">
-                    <!-- Gerado pelo JavaScript -->
-                </div>
-
-                <div class="time-options" data-option-group="time">
-                    <button class="time-choice active" data-value="Manhã · 8h–12h">
-                        Manhã · 8h–12h
+                        <span>Bolos</span>
                     </button>
 
-                    <button class="time-choice" data-value="Tarde · 13h–18h">
-                        Tarde · 13h–18h
+
+                    <button class="order-category" data-order-category="salgados" type="button">
+                        <span class="order-category-icon">
+                            <img src="assets/images/order-salgados.png" alt="">
+                        </span>
+
+                        <span>Salgados</span>
                     </button>
+
+
+                    <button class="order-category" data-order-category="doces" type="button">
+                        <span class="order-category-icon">
+                            <img src="assets/images/order-doces.png" alt="">
+                        </span>
+
+                        <span>Doces</span>
+                    </button>
+
                 </div>
+
+
+                <!-- PRODUTOS DA CATEGORIA -->
+                <div class="order-products-header">
+
+                    <div>
+                        <h3 id="order-category-title">Nossos bolos</h3>
+
+                        <p id="order-category-description">
+                            Escolha seu bolo e personalize do seu jeito.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="order-products" id="order-products">
+
+                    <!--
+                        Os produtos serão renderizados pelo orders.js.
+                        Cada categoria terá seus próprios produtos.
+                    -->
+
+                </div>
+
+
+                <!-- MEU PEDIDO -->
+                <section class="order-summary" id="order-summary">
+
+                    <div class="order-summary-header">
+
+                        <div>
+                            <span class="section-subtitle">SUA SELEÇÃO</span>
+                            <h3>Meu pedido</h3>
+                        </div>
+
+                        <span class="order-summary-count" id="order-summary-count">
+                            0 itens
+                        </span>
+
+                    </div>
+
+
+                    <div class="order-summary-empty" id="order-summary-empty">
+
+                        <span class="empty-order-icon">
+                            <icon name="shopping-bag" size="32" />
+                        </span>
+
+                        <h4>Sua encomenda está vazia</h4>
+
+                        <p>
+                            Escolha seus produtos e eles aparecerão aqui.
+                        </p>
+
+                    </div>
+
+
+                    <div class="order-summary-products" id="order-summary-products">
+
+                        <!-- Itens adicionados pelo orders.js -->
+
+                    </div>
+
+
+                    <div class="order-summary-footer">
+
+                        <div class="order-total">
+                            <span>Total estimado</span>
+                            <strong id="order-total">R$ 0,00</strong>
+                        </div>
+
+                        <button type="button" class="finish-order-button" id="finish-order-button" disabled>
+                            Continuar encomenda
+                            <icon name="arrow-right" size="18" />
+                        </button>
+
+                        <p class="order-summary-notice">
+                            Alguns itens personalizados podem precisar de orçamento.
+                        </p>
+
+                    </div>
+
+                </section>
+
+
+                <!-- KITS PRONTOS -->
+                <section class="kits-section" id="kits">
+
+                    <div class="section-heading">
+                        <div>
+                            <span class="section-subtitle">PRATICIDADE E SABOR</span>
+                            <h2>Kits prontos</h2>
+                        </div>
+                    </div>
+
+                    <p class="kits-description">
+                        Combinações especiais para compartilhar bons momentos.
+                    </p>
+
+
+                    <div class="kits-grid">
+
+                        <!--
+                            MANTENHA AQUI OS DOIS CARDS DE KITS
+                            QUE JÁ EXISTIAM NA SUA VERSÃO ANTERIOR.
+        
+                            Preserve os nomes, imagens, preços e
+                            classes dos botões add-kit.
+                        -->
+
+                    </div>
+
+                </section>
 
             </div>
 
-            <!-- Kits de festa -->
-            <div class="kits-section" id="kits">
 
-                <div class="section-heading">
-                    <h3>Kits de festa</h3>
-                    <a href="#kits">Ver tudo <span>→</span></a>
-                </div>
+            <!-- MODAL DE PERSONALIZAÇÃO -->
+            <div class="order-modal" id="order-modal" aria-hidden="true">
 
-                <div class="kits-grid">
+                <div class="order-modal-overlay" id="order-modal-overlay"></div>
 
-                    <article class="kit-card">
 
-                        <div class="kit-image">
-                            <span class="kit-tag">SERVE 20</span>
-                            <span class="kit-illustration">♧</span>
+                <div class="order-modal-content" role="dialog" aria-modal="true" aria-labelledby="order-modal-title">
+
+                    <div class="order-modal-header">
+
+                        <div>
+                            <span class="section-subtitle">PERSONALIZE</span>
+                            <h3 id="order-modal-title">Monte sua encomenda</h3>
                         </div>
 
-                        <div class="kit-info">
-                            <h4>Kit Aniversário</h4>
-                            <p>Bolo M, 50 salgados e 30 docinhos</p>
+                        <button type="button" class="order-modal-close" id="order-modal-close"
+                            aria-label="Fechar modal">
+                            <icon name="x" size="22" />
+                        </button>
 
-                            <div class="kit-footer">
-                                <strong>R$ 289</strong>
+                    </div>
 
-                                <button class="add-kit" data-name="Kit Aniversário" data-price="289"
-                                    aria-label="Adicionar Kit Aniversário">
-                                    +
-                                </button>
-                            </div>
+
+                    <!--
+                        O conteúdo muda conforme o produto selecionado.
+        
+                        Exemplo:
+                        Bolo: tamanho, massa, recheio e decoração.
+                        Salgados: tipo e quantidade.
+                        Doces: tipo e quantidade.
+                    -->
+                    <div class="order-modal-body" id="order-modal-body">
+
+                    </div>
+
+
+                    <div class="order-modal-footer">
+
+                        <div class="modal-product-total">
+                            <span>Valor estimado</span>
+                            <strong id="modal-product-total">R$ 0,00</strong>
                         </div>
 
-                    </article>
+                        <button type="button" class="add-order-button" id="add-order-button">
+                            Adicionar ao pedido
+                        </button>
 
-                    <article class="kit-card">
-
-                        <div class="kit-image">
-                            <span class="kit-tag">100 UN.</span>
-                            <span class="kit-illustration">♧</span>
-                        </div>
-
-                        <div class="kit-info">
-                            <h4>Centro de salgados</h4>
-                            <p>Coxinha, risole e bolinha de queijo</p>
-
-                            <div class="kit-footer">
-                                <strong>R$ 120</strong>
-
-                                <button class="add-kit" data-name="Centro de salgados" data-price="120"
-                                    aria-label="Adicionar Centro de salgados">
-                                    +
-                                </button>
-                            </div>
-                        </div>
-
-                    </article>
+                    </div>
 
                 </div>
 
