@@ -1880,7 +1880,7 @@ a {
 
     width: 38px;
     height: 38px;
-
+   
     border: none;
     border-radius: 50%;
 
@@ -1892,6 +1892,11 @@ a {
     transition:
         background 0.2s ease,
         transform 0.2s ease;
+}
+
+.order-modal-close i{
+    font-size: 18px;
+    font-weight: 900;
 }
 
 .order-modal-close:hover {
