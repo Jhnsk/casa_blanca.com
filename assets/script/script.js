@@ -298,7 +298,7 @@ const cartDiscount = document.querySelector(".cart-discount");
 const cartTotal = document.querySelector(".cart-total");
 
 // Número do WhatsApp da loja. Exemplo: 5575999999999
-const WHATSAPP_NUMBER = "";
+const WHATSAPP_NUMBER = "5511961156268";
 
 // Formatar valores em reais
 function formatPrice(value) {

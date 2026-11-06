@@ -27,7 +27,6 @@
 body {
     background-color: var(--background-color);
     width: 100%;
-    padding-bottom: 60px;
 }
 
 ul,
@@ -1327,7 +1326,8 @@ a {
 
 .orders-section {
     width: 100%;
-    padding: 30px 15px;
+    padding: 30px 15px 90px;
+    /* 60px extras: espaço da navegação inferior */
     background: #fffaf6;
     color: #351b13;
 }
@@ -2349,6 +2349,8 @@ a {
 }
 
 .kit-card {
+    display: flex;
+    flex-direction: column;
     min-width: 0;
     overflow: hidden;
     border: 1px solid #eee3da;
@@ -2360,11 +2362,14 @@ a {
     position: relative;
     display: grid;
     place-items: center;
+    flex-shrink: 0;
     height: 120px;
     background: #f0dfc9;
 }
 
 .kit-image img {
+    position: absolute;
+    inset: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -2388,6 +2393,9 @@ a {
 }
 
 .kit-info {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
     padding: 10px;
 }
 
@@ -2409,7 +2417,8 @@ a {
     align-items: center;
     justify-content: space-between;
     gap: 5px;
-    margin-top: 8px;
+    margin-top: auto;
+    padding-top: 8px;
 }
 
 .kit-footer strong {
@@ -2441,7 +2450,7 @@ a {
 @media (min-width: 600px) {
 
     .orders-section {
-        padding: 40px 25px;
+        padding: 40px 25px 100px;
     }
 
     .orders-header {
@@ -2533,7 +2542,7 @@ a {
 @media (min-width: 900px) {
 
     .orders-section {
-        padding: 50px 35px;
+        padding: 50px 35px 110px;
     }
 
     .order-categories {
